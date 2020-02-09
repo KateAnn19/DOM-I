@@ -46,17 +46,26 @@ logo.setAttribute('src', siteContent["nav"]["img-src"])
 //options: 
 //.innerHTML (navItems.innerHTML)
 //navItems.style.borderBottom = "solid 3px blue";
-//
 
-let navItems = document.querySelector('nav');
+//------------------------------------------------
+//if I want just the first nav bar
+//------------------------------------------------
+let nav = document.getElementsByTagName('nav')[0];
+
+nav.style.borderBottom = 'solid pink 4px';
 
 
-let a = document.getElementsByTagName('a');
+
+let navItems = nav.getElementsByTagName('a');
+
+//console.log(navItems.length); //this gives length of nav items
+
+
 
 //navItems[0].textContent = siteContent["nav"]["nav-item-1"];
 //navItems[1].textContent = sitContent["nav"]["nav-item-2"];
 
-//tried this, but it overrides
+//tried this, but it overrides the value
 ////navItem1.textContent = siteContent["nav"]["nav-item-1"];
 //navItems.textContent = siteContent["nav"]["nav-item-2"];
 
@@ -66,10 +75,23 @@ let a = document.getElementsByTagName('a');
 //this gets me navigation bar 
 //-----------------------------
 
-for(let i = 0 ; i < 6 ; i++){
+
+//`.appendChild()` and `.prepend()` to add two new items to the navigation system. You can call them whatever you want.
+
+for(let i = 0 ; i < navItems.length ; i++){
   let nav_item = 'nav-item-' + (i+1);
-  a[i].textContent = siteContent['nav'][nav_item];
+  navItems[i].textContent = siteContent['nav'][nav_item];
+  navItems[i].style.color = "green";
 }
+
+let newNavItem = document.createElement('a');
+let newNavItem2 = document.createElement('a');
+
+newNavItem.textContent = 'Blog';
+newNavItem2.textContent = 'Reviews';
+
+nav.appendChild(newNavItem).style.color = 'green';
+nav.appendChild(newNavItem2).style.color = 'green';
 
 //----------------------------
 //this is my version using indexes
@@ -138,6 +160,8 @@ roundImage.setAttribute('src', siteContent['cta']['img-src']);
 //--------------------------------------------------------
 
 let topContent = document.getElementsByClassName('top-content')[0];
+
+//for(let i = 0 ; i < )
 
 let firstTContentTitle = topContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['features-h4'];
 let firstTContentText = topContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['features-content'];
