@@ -56,31 +56,84 @@ let a = document.getElementsByTagName('a');
 //navItems[0].textContent = siteContent["nav"]["nav-item-1"];
 //navItems[1].textContent = sitContent["nav"]["nav-item-2"];
 
+//tried this, but it overrides
+////navItem1.textContent = siteContent["nav"]["nav-item-1"];
+//navItems.textContent = siteContent["nav"]["nav-item-2"];
+
 //console.log(a);
 
+//-----------------------------
+//this gets me navigation bar 
+//-----------------------------
+
+for(let i = 0 ; i < 6 ; i++){
+  let nav_item = 'nav-item-' + (i+1);
+  a[i].textContent = siteContent['nav'][nav_item];
+}
+
+//----------------------------
+//this is my version using indexes
+/*
 a[0].textContent = siteContent['nav']['nav-item-1'];  
 a[1].textContent = siteContent['nav']['nav-item-2'];
 a[2].textContent = siteContent['nav']['nav-item-3'];
 a[3].textContent = siteContent['nav']['nav-item-4'];
 a[4].textContent = siteContent['nav']['nav-item-5'];
 a[5].textContent = siteContent['nav']['nav-item-6'];
+*/
+//----------------------------
     
 //console.log(document.getElementsByClassName('cta-text'.all));
+//trying to get all the elements in this class to see how many
 
-let mainTitle = document.getElementsByClassName('cta')[0];
+//----------------------------
+//this gets me the cta class elements which contain the header, button and image
+//----------------------------
+
+let elementsOfCtaClass = document.getElementsByClassName('cta')[0];
+console.log(elementsOfCtaClass);
+
 //console.log(mainTitle);
-mainTitle.getElementsByTagName('h1')[0].innerText = siteContent['cta']['h1'];
+//mainTitle.textContent = siteContent['cta']['h1'];
+//mainTitle.innerText = siteContent['cta']['h1'];
+
+let mainTitle = elementsOfCtaClass.getElementsByTagName('h1')[0].innerText = siteContent['cta']['h1'];
+
 //mainTitle.getElementsByClassName('cta-text')[0].innerHTML = siteContent['cta']['h1] will return element with different font
 //.innerHTML, .innerText, textContent
 //how do I see how many elements are in a class?
 
-let button = document.getElementsByClassName('cta')[1];
-//mainTitle.textContent = siteContent['cta']['h1'];
+let button = elementsOfCtaClass.getElementsByTagName('button')[0].innerText = siteContent['cta']['button'];
 
-//navItem1.textContent = siteContent["nav"]["nav-item-1"];
-//navItems.textContent = siteContent["nav"]["nav-item-2"];
+//console.log(button);
 
-//navItem2.textContent = siteContent['nav']['nav-item-2'];
+//let roundImage = elementsOfCtaClass.getElementsById('cta-img');
+
+//-------------------------------------------------------
+//example from above
+//-------------------------------------------------------
+
+// let logo = document.getElementById("logo-img");
+// logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+//-------------------------------------------------------
+
+//let roundImage = elementsOfCtaClass.getElementsByTagName('img')[0];              //this will work
+
+//let roundImage = elementsOfCtaClass.getElementById('cta-img');                   //this doesn't work
+
+let roundImage = document.getElementById('cta-img');                               //this works and is what is being implemented
+
+roundImage.setAttribute('src', siteContent['cta']['img-src']);
+
+
+//.setAttribute('src', siteContent['cta']['img-src']);
+
+
+//logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+
+
 
 
 
