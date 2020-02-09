@@ -84,14 +84,61 @@ for(let i = 0 ; i < navItems.length ; i++){
   navItems[i].style.color = "green";
 }
 
-let newNavItem = document.createElement('a');
-let newNavItem2 = document.createElement('a');
+//---------------------------------
+//this adds two nav items to the nav bar using a for of loop and appendChild()
+//-----------------------------------
 
-newNavItem.textContent = 'Blog';
-newNavItem2.textContent = 'Reviews';
+let navList = ['Blog', 'Reviews', 'Team Pics'];
 
-nav.appendChild(newNavItem).style.color = 'green';
-nav.appendChild(newNavItem2).style.color = 'green';
+// for(let title of navList){
+//   let newNavItem = document.createElement('a');
+//   newNavItem.textContent = title;
+//   newNavItem.setAttribute("href", "#");
+//   newNavItem.style.color = 'green';
+//   if(title === 'Team Pics'){
+//     nav.prepend(newNavItem);
+//   }
+//   else{
+//     nav.appendChild(newNavItem);
+//   }
+// };
+
+for(let title of navList){
+    let newNavItem = document.createElement('a');
+    newNavItem.textContent = title;
+    newNavItem.setAttribute("href", "#");
+    newNavItem.style.color = 'green';
+    if(title === 'Team Pics'){
+      newNavItem.style.border = "3px sienna dashed";
+      nav.prepend(newNavItem);
+    }
+    else{
+      nav.appendChild(newNavItem);
+    }
+  };
+  
+
+
+//------------------------------
+//this adds 1 new nav item to the nav bar using prepend()
+//-------------------------------
+
+//let newNavItem3 = document.createElement('a');
+//newNavItem3.textContent = 'Team Pics';
+//nav.prepend(newNavItem3).style.color = 'green';
+
+
+//-------------------------------------------------
+//this does the same thing the for of loop above does but it's longer
+//----------------------------------------------------
+//let newNavItem = document.createElement('a');
+//let newNavItem2 = document.createElement('a');
+
+//newNavItem.textContent = 'Blog';
+//newNavItem2.textContent = 'Reviews';
+
+//nav.appendChild(newNavItem).style.color = 'green';
+//nav.appendChild(newNavItem2).style.color = 'green';
 
 //----------------------------
 //this is my version using indexes
@@ -115,19 +162,21 @@ a[5].textContent = siteContent['nav']['nav-item-6'];
 //----------------------------
 
 let elementsOfCtaClass = document.getElementsByClassName('cta')[0];
-console.log(elementsOfCtaClass);
+//console.log(elementsOfCtaClass);
 
 //console.log(mainTitle);
 //mainTitle.textContent = siteContent['cta']['h1'];
 //mainTitle.innerText = siteContent['cta']['h1'];
 
-let mainTitle = elementsOfCtaClass.getElementsByTagName('h1')[0].innerText = siteContent['cta']['h1'];
+let mainTitle = elementsOfCtaClass.getElementsByTagName('h1')[0];
+mainTitle.innerText = siteContent['cta']['h1'];
 
 //mainTitle.getElementsByClassName('cta-text')[0].innerHTML = siteContent['cta']['h1] will return element with different font
 //.innerHTML, .innerText, textContent
 //how do I see how many elements are in a class?
 
-let button = elementsOfCtaClass.getElementsByTagName('button')[0].innerText = siteContent['cta']['button'];
+let button = elementsOfCtaClass.getElementsByTagName('button')[0]
+button.innerText = siteContent['cta']['button'];
 
 //console.log(button);
 
@@ -156,18 +205,85 @@ roundImage.setAttribute('src', siteContent['cta']['img-src']);
 
 
 //--------------------------------------------------------
-//this gets me top-content 
+//this gets me main-content 
 //--------------------------------------------------------
 
-let topContent = document.getElementsByClassName('top-content')[0];
 
-//for(let i = 0 ; i < )
+   let mainContent = document.getElementsByClassName('main-content')[0];
 
-let firstTContentTitle = topContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['features-h4'];
-let firstTContentText = topContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['features-content'];
+//--------------------------------------------------------------------------
+//first method tried with accessing image as well but having to decrement i 
+//--------------------------------------------------------------------------
 
-let secondTContentTitle = topContent.getElementsByTagName('h4')[1].innerText = siteContent['main-content']['about-h4'];
-let secondTContentText = topContent.getElementsByTagName('p')[1].innerText = siteContent['main-content']['about-content'];
+  // let index = 0;
+  // let siteContentKeys = Object.keys(siteContent['main-content']);
+  // let siteContentValues = Object.values(siteContent['main-content']);
+
+  // for(let i = 0 ; i < document.getElementsByClassName('text-content').length ; i++){
+  //   //edge case
+  //   if(siteContentKeys[index] === "middle-img-src"){
+  //     let middleImage = document.getElementsByClassName('middle-img')[0];
+  //     middleImage.setAttribute('src', siteContentValues[index]);
+  //     i--;
+      
+  //   }
+  //   else{
+  //     let contentTitle = mainContent.getElementsByTagName('h4')[i];
+  //     contentTitle.innerText = siteContentValues[index];
+  //     index++;
+      
+  //     let contentPara = mainContent.getElementsByTagName('p')[i];
+  //     contentPara.innerText = siteContentValues[index];
+  //   }
+  //   index++;
+  // }
+
+  //---------------------------------------------------------------------------------
+  //second method that's cleaner that creates new object leaving out image 
+  //---------------------------------------------------------------------------------
+
+let newSiteContent = {};
+
+
+for(element in siteContent['main-content']){
+  if(element === 'middle-img-src'){
+    continue;
+  }
+  else{
+    newSiteContent[element] = siteContent['main-content'][element];
+  }
+}
+
+console.log(newSiteContent);
+
+let index = 0;
+//let siteContentKeys = Object.keys(siteContent['main-content']);
+let siteContentValues = Object.values(newSiteContent);
+
+for(let i = 0 ; i < document.getElementsByClassName('text-content').length ; i++){
+    let contentTitle = mainContent.getElementsByTagName('h4')[i];
+    contentTitle.innerText = siteContentValues[index];
+    index++;
+      
+    let contentPara = mainContent.getElementsByTagName('p')[i];
+    contentPara.innerText = siteContentValues[index];
+    index++;
+}
+
+ //----------------------------------------------------------------------------------
+ //this does everything the above for loop is doing but not using DRY
+ //----------------------------------------------------------------------------------   
+   
+
+// let firstTContentTitle = topContent.getElementsByTagName('h4')[0]
+// firstTContentTitle.innerText = siteContent['main-content']['features-h4'];
+// let firstTContentText = topContent.getElementsByTagName('p')[0]
+// firstTContentTExt.innerText = siteContent['main-content']['features-content'];
+
+// let secondTContentTitle = topContent.getElementsByTagName('h4')[1]
+//secindTContentTitle.innerText = siteContent['main-content']['about-h4'];
+// let secondTContentText = topContent.getElementsByTagName('p')[1]
+//secondTContentText.innerText = siteContent['main-content']['about-content'];
 
 //-------------------------------------------------------
 //this gets me middle image 
@@ -181,16 +297,16 @@ middleImage.setAttribute('src', siteContent['main-content']['middle-img-src']);
 //this gets me bottom content
 //-------------------------------------------------------
 
-let bottomContent = document.getElementsByClassName('bottom-content')[0];
+//let bottomContent = document.getElementsByClassName('bottom-content')[0];
 
-let firstBContentTitle = bottomContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['services-h4'];
-let firstBContentText = bottomContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['services-content'];
+//let firstBContentTitle = bottomContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['services-h4'];
+//let firstBContentText = bottomContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['services-content'];
 
-let secondBContentTitle = bottomContent.getElementsByTagName('h4')[1].innerText = siteContent['main-content']['product-h4'];
-let secondBContentText = bottomContent.getElementsByTagName('p')[1].innerText = siteContent['main-content']['product-content'];
+//let secondBContentTitle = bottomContent.getElementsByTagName('h4')[1].innerText = siteContent['main-content']['product-h4'];
+//let secondBContentText = bottomContent.getElementsByTagName('p')[1].innerText = siteContent['main-content']['product-content'];
 
-let thirdBContentTitle = bottomContent.getElementsByTagName('h4')[2].innerText = siteContent['main-content']['vision-h4'];
-let thirdBContentext = bottomContent.getElementsByTagName('p')[2].innerText = siteContent['main-content']['vision-content'];
+//let thirdBContentTitle = bottomContent.getElementsByTagName('h4')[2].innerText = siteContent['main-content']['vision-h4'];
+//let thirdBContentext = bottomContent.getElementsByTagName('p')[2].innerText = siteContent['main-content']['vision-content'];
 
 //------------------------------------------------------
 //this gets me contact information
