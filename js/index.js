@@ -88,6 +88,8 @@ a[5].textContent = siteContent['nav']['nav-item-6'];
 
 //----------------------------
 //this gets me the cta class elements which contain the header, button and image
+
+//question: is it better to use cta or cta-text?
 //----------------------------
 
 let elementsOfCtaClass = document.getElementsByClassName('cta')[0];
@@ -118,6 +120,10 @@ let button = elementsOfCtaClass.getElementsByTagName('button')[0].innerText = si
 
 //-------------------------------------------------------
 
+//-------------------------------------------------------
+//this gets me the round image
+//-------------------------------------------------------
+
 //let roundImage = elementsOfCtaClass.getElementsByTagName('img')[0];              //this will work
 
 //let roundImage = elementsOfCtaClass.getElementById('cta-img');                   //this doesn't work
@@ -127,10 +133,59 @@ let roundImage = document.getElementById('cta-img');                            
 roundImage.setAttribute('src', siteContent['cta']['img-src']);
 
 
-//.setAttribute('src', siteContent['cta']['img-src']);
+//--------------------------------------------------------
+//this gets me top-content 
+//--------------------------------------------------------
+
+let topContent = document.getElementsByClassName('top-content')[0];
+
+let firstTContentTitle = topContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['features-h4'];
+let firstTContentText = topContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['features-content'];
+
+let secondTContentTitle = topContent.getElementsByTagName('h4')[1].innerText = siteContent['main-content']['about-h4'];
+let secondTContentText = topContent.getElementsByTagName('p')[1].innerText = siteContent['main-content']['about-content'];
+
+//-------------------------------------------------------
+//this gets me middle image 
+//-------------------------------------------------------
+
+let middleImage = document.getElementsByClassName('middle-img')[0];
+middleImage.setAttribute('src', siteContent['main-content']['middle-img-src']);
 
 
-//logo.setAttribute('src', siteContent["nav"]["img-src"])
+//-------------------------------------------------------
+//this gets me bottom content
+//-------------------------------------------------------
+
+let bottomContent = document.getElementsByClassName('bottom-content')[0];
+
+let firstBContentTitle = bottomContent.getElementsByTagName('h4')[0].innerText = siteContent['main-content']['services-h4'];
+let firstBContentText = bottomContent.getElementsByTagName('p')[0].innerText = siteContent['main-content']['services-content'];
+
+let secondBContentTitle = bottomContent.getElementsByTagName('h4')[1].innerText = siteContent['main-content']['product-h4'];
+let secondBContentText = bottomContent.getElementsByTagName('p')[1].innerText = siteContent['main-content']['product-content'];
+
+let thirdBContentTitle = bottomContent.getElementsByTagName('h4')[2].innerText = siteContent['main-content']['vision-h4'];
+let thirdBContentext = bottomContent.getElementsByTagName('p')[2].innerText = siteContent['main-content']['vision-content'];
+
+//------------------------------------------------------
+//this gets me contact information
+//------------------------------------------------------
+
+let contact = document.getElementsByClassName('contact')[0];
+
+let firstHeader = contact.getElementsByTagName('h4')[0].innerText = siteContent['contact']['contact-h4'];
+let firstP = contact.getElementsByTagName('p')[0].innerText = siteContent['contact']['address'];
+let secondP = contact.getElementsByTagName('p')[1].innerText = siteContent['contact']['phone'];
+let thirdP = contact.getElementsByTagName('p')[2].innerText = siteContent['contact']['email'];
+
+//------------------------------------------------------
+//this gets me copyright
+//------------------------------------------------------
+
+let footer = document.getElementsByTagName('footer')[0];
+
+let copyright = footer.getElementsByTagName('p')[0].innerText = siteContent['footer']['copyright'];
 
 
 
