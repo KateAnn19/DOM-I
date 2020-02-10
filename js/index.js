@@ -254,7 +254,7 @@ for(element in siteContent['main-content']){
   }
 }
 
-console.log(newSiteContent);
+//console.log(newSiteContent);
 
 let index = 0;
 //let siteContentKeys = Object.keys(siteContent['main-content']);
@@ -312,12 +312,61 @@ middleImage.setAttribute('src', siteContent['main-content']['middle-img-src']);
 //this gets me contact information
 //------------------------------------------------------
 
+//this get me the class of 'contact' and the elements inside
+
+//------------------------------------------------------
+
 let contact = document.getElementsByClassName('contact')[0];
 
-let firstHeader = contact.getElementsByTagName('h4')[0].innerText = siteContent['contact']['contact-h4'];
-let firstP = contact.getElementsByTagName('p')[0].innerText = siteContent['contact']['address'];
-let secondP = contact.getElementsByTagName('p')[1].innerText = siteContent['contact']['phone'];
-let thirdP = contact.getElementsByTagName('p')[2].innerText = siteContent['contact']['email'];
+//-----------------------------------------------------------
+//this targets just the h4 element in the class of contact 
+//--------------------------------------------------------------
+
+let firstHeader = contact.getElementsByTagName('h4')[0];
+firstHeader.innerText = siteContent['contact']['contact-h4'];
+
+//------------------------------------------------------------
+//this gets me p tags in the class of 'contact'
+//------------------------------------------------------------- 
+
+
+let newContactObject = {};
+
+
+for(element in siteContent['contact']){
+  if(element === 'contact-h4'){
+    continue;
+  }
+  else{
+    newContactObject[element] = siteContent['contact'][element];
+  }
+};
+
+
+let contactValues = Object.values(newContactObject);
+
+
+//let pTags = contact.getElementsByTagName('p');
+
+//console.log(pTags);
+
+let index2 = 0;
+
+
+for(let i = 0 ; i < contact.getElementsByTagName('p').length ; i++){
+  let pTags = contact.getElementsByTagName('p')[i];
+  pTags.innerText = contactValues[index2];
+  index2++;
+}
+
+//for(let element of siteContent)
+
+// //let firstP = contact.getElementsByTagName('p')[0]
+// firstP.innerText = siteContent['contact']['address'];
+// let secondP = contact.getElementsByTagName('p')[1];
+// secondP.innerText = siteContent['contact']['phone'];
+// let thirdP = contact.getElementsByTagName('p')[2]
+// thirdP.innerText = siteContent['contact']['email'];
 
 //------------------------------------------------------
 //this gets me copyright
