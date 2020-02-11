@@ -1,4 +1,5 @@
-# Stretch Assignment - Digital Timer
+
++6# Stretch Assignment - Digital Timer
 
 Topics:
  * Interacting with the DOM
