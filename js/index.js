@@ -39,21 +39,32 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+//two different ways to do it
+ 
+//---------------------------------------------------------
+//first way 
+//---------------------------------------------------------
+//logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+//---------------------------------------------------------
+//second way
+//---------------------------------------------------------
+logo.src = siteContent["nav"]["img-src"];
 
 //my code 
 
 //options: 
 //.innerHTML (navItems.innerHTML)
-//navItems.style.borderBottom = "solid 3px blue";
+
 
 //------------------------------------------------
 //if I want just the first nav bar
 //------------------------------------------------
 let nav = document.getElementsByTagName('nav')[0];
 
-nav.style.borderBottom = 'solid pink 4px';
 
+nav.style.borderBottom = 'solid pink 4px';
 
 
 let navItems = nav.getElementsByTagName('a');
@@ -69,7 +80,6 @@ let navItems = nav.getElementsByTagName('a');
 ////navItem1.textContent = siteContent["nav"]["nav-item-1"];
 //navItems.textContent = siteContent["nav"]["nav-item-2"];
 
-//console.log(a);
 
 //-----------------------------
 //this gets me navigation bar 
@@ -117,6 +127,19 @@ for(let title of navList){
     }
   };
   
+
+//-----------------------------------------------
+//this was my attempt to create new nav bar
+//---------------------------------------------
+// let newNav = document.createElement('nav');
+// let otherNewNav = document.createElement('nav');
+
+// newNav.textContent = "Test1";
+// otherNewNav = "Test2";
+
+// newNav.setAttribute.href = "#";
+// otherNewNav.setAttribute.href = "#";
+
 
 
 //------------------------------
@@ -170,6 +193,8 @@ let elementsOfCtaClass = document.getElementsByClassName('cta')[0];
 
 let mainTitle = elementsOfCtaClass.getElementsByTagName('h1')[0];
 mainTitle.innerText = siteContent['cta']['h1'];
+mainTitle.innerText = 'DOM' + '\n' + 'Is' + '\n' + 'Awesome';
+
 
 //mainTitle.getElementsByClassName('cta-text')[0].innerHTML = siteContent['cta']['h1] will return element with different font
 //.innerHTML, .innerText, textContent
@@ -177,6 +202,90 @@ mainTitle.innerText = siteContent['cta']['h1'];
 
 let button = elementsOfCtaClass.getElementsByTagName('button')[0]
 button.innerText = siteContent['cta']['button'];
+
+button.addEventListener('click', event => {
+  button.innerText = event.detail;
+});
+
+button.addEventListener('click', (event) => 
+{ event.target.style.backgroundColor = 'blue'; });
+
+
+//----------------------------------------------------------------
+//this creates a new button
+//---------------------------------------------------------------
+//create new element
+
+
+let newButtonWithEvent = document.createElement('button');
+
+//add content
+
+newButtonWithEvent.textContent = "Click Me For More Fun";
+
+//add it to DOM node on page
+
+let appendElement = document.querySelector('.contact');
+  
+appendElement.append(newButtonWithEvent);
+
+//parentElement.append();
+
+//cardBody.append();
+
+//add event 
+
+//const button = document.querySelector('button');
+
+newButtonWithEvent.addEventListener('click', event => {
+  newButtonWithEvent.innerHTML = `Have fun: ${event.detail}`;
+});
+
+const newButtonClickSiteContent = {
+  "nav": {
+    "nav-item-1": "Services",
+    "nav-item-2": "Product",
+    "nav-item-3": "Vision",
+    "nav-item-4": "Features",
+    "nav-item-5": "About",
+    "nav-item-6": "Contact",
+    "img-src": "img/logo.png"
+  },
+  "cta": {
+    "h1": "DOM Is Awesome",
+    "button": "Get Started",
+    "img-src": "img/header-img.png"
+  },
+  "main-content": {
+    "features-h4":"Features",
+    "features-content": "Features content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    "about-h4":"About",
+    "about-content": "About content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    "middle-img-src": "img/mid-page-accent.jpg",
+    "services-h4":"Services",
+    "services-content": "Services content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    "product-h4":"Product",
+    "product-content": "Product content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    "vision-h4":"Vision",
+    "vision-content": "Vision content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+  },
+  "contact": {
+    "contact-h4" : "Contact",
+    "address" : "123 Way 456 Street Somewhere, USA",
+    "phone" : "1 (888) 888-8888",
+    "email" : "sales@greatidea.io",
+  },
+  "footer": {
+    "copyright" : "Copyright Great Idea! 2018"
+  },
+};
+
+
+
+//Study tomorrow's lesson on events and try to integrate 
+//a button that can update content on the site with a click of a button. 
+//You could build a similar data object with new values to help you
+//test the click event.
 
 //console.log(button);
 
@@ -374,9 +483,18 @@ for(let i = 0 ; i < contact.getElementsByTagName('p').length ; i++){
 
 let footer = document.getElementsByTagName('footer')[0];
 
-let copyright = footer.getElementsByTagName('p')[0].innerText = siteContent['footer']['copyright'];
+let copyright = footer.getElementsByTagName('p')[0]
+copyright.innerText = siteContent['footer']['copyright'];
 
+//------------------------------------------------------
+//new styles
+//------------------------------------------------------
 
+let newCopyrightColor = document.getElementsByTagName('footer')[0];
+
+let newColorP = newCopyrightColor.getElementsByTagName('p')[0];
+
+newColorP.style.color = "purple";
 
 
 
